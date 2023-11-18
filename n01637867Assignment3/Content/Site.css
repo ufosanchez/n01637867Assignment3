@@ -1,0 +1,75 @@
+﻿/* Set padding to keep content from hitting the edges */
+.body-content {
+    margin-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/*change color background of the page*/
+body {
+    background-color: #Bfe2c9;
+}
+
+/*create a flex in orden to see the Teacher, class and student in horizontal (home page)*/
+.page-content {
+    display: flex;
+    gap: 1.5em;
+    flex-wrap: wrap;
+}
+
+/*create a border for the Teacher, class and student boxes*/
+.feature-content {
+    flex-basis: 400px;
+    border: 2px solid black;
+    border-radius: 25px;
+}
+
+/*bold text*/
+.bold {
+    font-weight: bold;
+}
+
+/* create a margin of the flex item of the teacher, class and student*/
+section{
+    margin: 10px 10px;
+}
+
+/*change the style of the links that will display the list of the features (home page)*/
+.link-style {
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 25px;
+    padding: 10px 10px;
+    margin-bottom: 10px;
+    background-color: #Bf5c5c;
+    color: white;
+    font-weight: bold;
+}
+
+/*style for the link of the list items*/
+.list-link {
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 25px;
+    padding: 0px 10px;
+    margin-top: 10px;
+    background-color: #5c8dbf;
+    color: black;
+}
+
+/*hover of the teacher, student and class link (home page)*/
+.link-style:hover{
+    color: black;
+}
+
+/*hover of the item list of the features*/
+.list-link:hover {
+    color: white;
+}

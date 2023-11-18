@@ -1,0 +1,17 @@
+﻿@model IEnumerable<n01637867Assignment3.Models.Course>
+
+@{
+    ViewBag.Title = "List Classes";
+}
+
+<h2>List of the Classes</h2>
+
+<!-- the foreach will display the list of the classes -->
+@{
+    foreach (n01637867Assignment3.Models.Course Class in Model)
+    {
+        <!-- a link with the name of the class and href that will naviagte to the details of the class -->
+        <div><a href="/Class/Show/@Class.ClassID" class="list-link">@Class.ClassName</a></div>
+    }
+}
+

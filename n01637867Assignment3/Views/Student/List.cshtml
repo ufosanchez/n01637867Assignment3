@@ -1,0 +1,18 @@
+﻿@model IEnumerable<n01637867Assignment3.Models.Student>
+
+@{
+    ViewBag.Title = "List Students";
+}
+
+<h2>List of the Students</h2>
+
+<!-- the foreach will display the list of the students -->
+@{
+    foreach (n01637867Assignment3.Models.Student Student in Model)
+    {
+        <!-- a link with the name of the student and href that will naviagte to the details of the student -->
+        <div><a href="/Student/Show/@Student.StudentID" class="list-link">@Student.StudentFName @Student.StudentLName</a></div>
+    }
+}
+
+

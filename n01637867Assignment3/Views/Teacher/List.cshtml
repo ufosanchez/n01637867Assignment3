@@ -1,0 +1,25 @@
+﻿@model IEnumerable<n01637867Assignment3.Models.Teacher>
+
+@{
+    ViewBag.Title = "List Teachers";
+}
+
+<h2>List of the Teachers</h2>
+
+<!-- a for with an input that will search for an specific teacher, it can filter by the fiest name, last name or both -->
+<form method="GET" action="/Teacher/List">
+    <div>
+        <input type="text" name="TeacherSeacrhKey" placeholder="Search by Name">
+        <input type="submit" value="Search">
+    </div>
+</form>
+
+<!-- the foreach will display the list of the teachers -->
+@{
+    foreach (n01637867Assignment3.Models.Teacher Teacher in Model)
+    {
+        <!-- a link with the name of the teacher and href that will naviagte to the details of the teacher -->
+        <div><a href="/Teacher/Show/@Teacher.TeacherID" class="list-link">@Teacher.TeacherFName @Teacher.TeacherLName</a></div>
+    }
+}
+
