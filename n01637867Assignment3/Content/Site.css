@@ -73,3 +73,52 @@ section{
 .list-link:hover {
     color: white;
 }
+
+.content-conatiner{
+    width: 70%;
+    margin: 0 auto;
+}
+
+.container-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.goBack {
+    text-decoration: none;
+    margin: 1em 0;
+    display: inline-block;
+}
+
+.deleteLink {
+    text-decoration: none;
+    color: white;
+    margin: 1em 0;
+    background: #dd1111;
+    padding: 5px 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.deleteLink:hover {
+    color: #dd1111;
+    background: white;
+}
+
+.container-box-delete {
+    display: flex;
+    justify-content: center;
+    gap: 5em;
+    align-items: center;
+}
+
+.deleteBtn {
+    color: white;
+    background: #dd1111;
+    border: 2px solid black;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto;
+}
+

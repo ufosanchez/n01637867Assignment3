@@ -5,9 +5,16 @@
 }
 
 <!-- details of the teacher selected -->
-<h2>Information of the teacher selected in detail </h2>
-<p class="bold">Teacher Full Name : @Model.TeacherFName @Model.TeacherLName</p>
-<p>Employee Number : @Model.EmployeeNumber</p>
-<p>Hire date : @Model.HireDate</p>
-<p>Salary : @Model.Salary</p>
+<div class="content-conatiner">
+    <div class="container-box">
+        <a class="goBack" href="/Teacher/List">Back to Teachers List</a>
+        <a class="deleteLink" href="/Teacher/DeleteConfirm/@Model.TeacherID">Delete <i class="fa-solid fa-trash icon-trash"></i></a>
+    </div>
+
+    <h2>Information of the teacher selected in detail </h2>
+    <p class="bold">Teacher Full Name : @Model.TeacherFName @Model.TeacherLName</p>
+    <p>Employee Number : @Model.EmployeeNumber</p>
+    <p>Hire date : @Model.HireDate</p>
+    <p>Salary : @Model.Salary</p>
+</div>
 

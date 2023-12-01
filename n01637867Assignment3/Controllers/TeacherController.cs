@@ -41,5 +41,34 @@ namespace n01637867Assignment3.Controllers
 
             return View(SelectedTeacher);
         }
+
+        // GET : Teacher/DeleteConfirm/{id}
+        // Go to -> /View/Teacher/DeleteConfirm.cshtml
+        // Browser confirm if the user wants to delete the selected teacher
+        public ActionResult DeleteConfirm(int id)
+        {
+            //use the teacher data controller
+            TeacherDataController Controller = new TeacherDataController();
+
+            //grab the teacher information from the DB
+            Teacher SelectedTeacher = Controller.FindTeacher(id);
+
+            return View(SelectedTeacher);
+        }
+
+        // POST : Teacher/Delete/{id}
+        // Go to -> /View/Teacher/DeleteConfirm.cshtml
+        // Browser confirm if the user wants to delete the selected teacher
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            //use the teacher data controller
+            TeacherDataController Controller = new TeacherDataController();
+
+            //grab the teacher information from the DB
+            Controller.DeleteTeacher(id);
+
+            return RedirectToAction("List");
+        }
     }
 }

@@ -113,7 +113,7 @@ namespace n01637867Assignment3.Controllers
             //execute the sql command
             cmd.CommandText = "select * from classes where classid = @key";
 
-            //sanitizing the student find
+            //sanitizing the class find
             cmd.Parameters.AddWithValue("@key", ClassId.ToString());
 
             // create an instance of Course

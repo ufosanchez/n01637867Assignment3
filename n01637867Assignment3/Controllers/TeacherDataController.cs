@@ -134,6 +134,9 @@ namespace n01637867Assignment3.Controllers
             //sanitizing the teacher find
             cmd.Parameters.AddWithValue("@key", TeacherId.ToString());
 
+            //binding with the @key
+            cmd.Prepare();
+
             // create an instance of Teacher
             Teacher selectedTeacher = new Teacher();
 
@@ -157,6 +160,45 @@ namespace n01637867Assignment3.Controllers
 
             //return the selected Teacher 
             return selectedTeacher;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <example>
+        /// POST: /api/TeacherData/DeleteTeacher/4
+        /// This method will not return anything, it will delete a teacher from the DB
+        /// </example>
+
+        [HttpPost]
+        [Route("api/TeacherData/DeleteTeacher/{TeacherId}")]
+        public void DeleteTeacher(int TeacherId)
+        {
+
+            //connect to the school database
+            MySqlConnection Conn = School.AccessDatabase();
+
+            //open a connection to the database
+            Conn.Open();
+
+            //create a sql command
+            MySqlCommand cmd = Conn.CreateCommand();
+
+            //execute the sql command
+            cmd.CommandText = "Delete from teachers where teacherid = @id";
+
+            //sanitizing
+            cmd.Parameters.AddWithValue("@id", TeacherId.ToString());
+
+            //binding with the @id
+            cmd.Prepare();
+
+            //method to execute a not SELECT statement 
+            cmd.ExecuteNonQuery();
+
+            //close the connection 
+            Conn.Close();
         }
     }
 }
