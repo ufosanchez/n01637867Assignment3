@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Google.Protobuf;
 using MySql.Data.MySqlClient;
 using n01637867Assignment3.Models;
 
@@ -190,6 +191,38 @@ namespace n01637867Assignment3.Controllers
 
             //sanitizing
             cmd.Parameters.AddWithValue("@id", TeacherId.ToString());
+
+            //binding with the @id
+            cmd.Prepare();
+
+            //method to execute a not SELECT statement 
+            cmd.ExecuteNonQuery();
+
+            //close the connection 
+            Conn.Close();
+        }
+
+        [HttpPost]
+        public void AddTeacher([FromBody]Teacher NewTeacher)
+        {
+            //connect to the school database
+            MySqlConnection Conn = School.AccessDatabase();
+
+            //open a connection to the database
+            Conn.Open();
+
+            //create a sql command
+            MySqlCommand cmd = Conn.CreateCommand();
+
+            //execute the sql command
+            cmd.CommandText = "Insert into teachers(teacherfname, teacherlname, employeenumber, hiredate, salary) values(@TeacherFName, @TeacherLName, @EmployeeNumber, @HireDate, @Salary)";
+
+            //sanitizing
+            cmd.Parameters.AddWithValue("@TeacherFName", NewTeacher.TeacherFName);
+            cmd.Parameters.AddWithValue("@TeacherLName", NewTeacher.TeacherLName);
+            cmd.Parameters.AddWithValue("@EmployeeNumber", NewTeacher.EmployeeNumber);
+            cmd.Parameters.AddWithValue("@HireDate", DateTime.Parse(NewTeacher.HireDate));
+            cmd.Parameters.AddWithValue("@Salary", NewTeacher.Salary);
 
             //binding with the @id
             cmd.Prepare();

@@ -122,3 +122,23 @@ section{
     margin: 0 auto;
 }
 
+.addTeacher {
+    text-decoration: none;
+    color: white;
+    margin: 1em 0;
+    background: #40916c;
+    padding: 5px 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+    display:inline-block;
+}
+
+.addTeacher:hover {
+    background: #bc6c25;
+    color: white;
+}
+
+form div{
+    margin-bottom: 0.5em;
+}
+

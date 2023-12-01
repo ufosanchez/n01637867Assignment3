@@ -1,6 +1,7 @@
 ﻿using n01637867Assignment3.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -67,6 +68,42 @@ namespace n01637867Assignment3.Controllers
 
             //grab the teacher information from the DB
             Controller.DeleteTeacher(id);
+
+            return RedirectToAction("List");
+        }
+
+        //GET :  /Teacher/New
+        public ActionResult New()
+        {
+            
+            return View();
+        }
+
+        //POST :  /Teacher/Create
+        [HttpPost]
+        public ActionResult Create(string TeacherFName, string TeacherLName, string EmployeeNumber, DateTime HireDate, decimal Salary)
+        {
+            Debug.WriteLine("Access!!");
+
+            Debug.WriteLine(TeacherFName);
+            Debug.WriteLine(TeacherLName);
+            Debug.WriteLine(EmployeeNumber);
+            Debug.WriteLine(HireDate);
+            Debug.WriteLine(HireDate.ToString("yyyy-MM-dd"));
+            Debug.WriteLine(Salary);
+
+            Teacher NewTeacher = new Teacher();
+
+            NewTeacher.TeacherFName = TeacherFName;
+            NewTeacher.TeacherLName = TeacherLName;
+            NewTeacher.EmployeeNumber = EmployeeNumber;
+            NewTeacher.HireDate = HireDate.ToString("yyyy-MM-dd");
+            NewTeacher.Salary = Salary;
+
+            //use the teacher data controller
+            TeacherDataController Controller = new TeacherDataController();
+
+            Controller.AddTeacher(NewTeacher);
 
             return RedirectToAction("List");
         }
