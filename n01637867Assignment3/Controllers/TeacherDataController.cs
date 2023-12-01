@@ -14,12 +14,6 @@ namespace n01637867Assignment3.Controllers
         // The database context class which allows to access to the MySQL Database
         private SchoolDbContext School = new SchoolDbContext();
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        //GET api/TeacherData/ListTeachers/Cody
-
         //This Controller access the Teacher table of the School DB
         /// <summary>
         /// A GET method which will return a list of all Classes in the system if the user doesn't provide a data on the text box,
@@ -112,12 +106,6 @@ namespace n01637867Assignment3.Controllers
         }
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        //GET api/TeacherData/FindTeacher/4
-
-        /// <summary>
         /// This GET method returns an individual teacher from the database by specifying the primary key teacherid
         /// </summary>
         /// <example>GET api/TeacherData/FindTeacher/4</example>
@@ -141,7 +129,10 @@ namespace n01637867Assignment3.Controllers
             MySqlCommand cmd = Conn.CreateCommand();
 
             //execute the sql command
-            cmd.CommandText = "select * from teachers where teacherid = " + TeacherId.ToString();
+            cmd.CommandText = "select * from teachers where teacherid = @key";
+
+            //sanitizing the teacher find
+            cmd.Parameters.AddWithValue("@key", TeacherId.ToString());
 
             // create an instance of Teacher
             Teacher selectedTeacher = new Teacher();

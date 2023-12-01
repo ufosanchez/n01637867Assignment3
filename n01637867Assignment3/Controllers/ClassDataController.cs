@@ -111,7 +111,10 @@ namespace n01637867Assignment3.Controllers
             MySqlCommand cmd = Conn.CreateCommand();
 
             //execute the sql command
-            cmd.CommandText = "select * from classes where classid = " + ClassId.ToString();
+            cmd.CommandText = "select * from classes where classid = @key";
+
+            //sanitizing the student find
+            cmd.Parameters.AddWithValue("@key", ClassId.ToString());
 
             // create an instance of Course
             Course selectedClass = new Course();

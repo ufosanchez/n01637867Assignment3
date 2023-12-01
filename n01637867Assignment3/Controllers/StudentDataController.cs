@@ -86,12 +86,6 @@ namespace n01637867Assignment3.Controllers
         }
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        //GET api/StudentData/FindStudent/22
-
-        /// <summary>
         /// This GET method returns an individual student from the database by specifying the primary key studentid
         /// </summary>
         /// <example>GET api/StudentData/FindStudent/22</example>
@@ -115,7 +109,10 @@ namespace n01637867Assignment3.Controllers
             MySqlCommand cmd = Conn.CreateCommand();
 
             //execute the sql command
-            cmd.CommandText = "select * from students where studentid = " + StudentId.ToString();
+            cmd.CommandText = "select * from students where studentid = @key";
+
+            //sanitizing the student find
+            cmd.Parameters.AddWithValue("@key", StudentId.ToString());
 
             // create an instance of Student
             Student selectedStudent = new Student();
