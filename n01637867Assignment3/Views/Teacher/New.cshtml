@@ -5,7 +5,8 @@
 
 <h2>New teacher</h2>
 
-<form method="POST" action="/Teacher/Create">
+<form method="POST" action="/Teacher/Create" name="form_add">
+    <span id="errorMsg"></span>
     <div>
         <label for="TeacherFName">First Name:</label>
         <input type="text" id="TeacherFName" name="TeacherFName" />
@@ -36,4 +37,95 @@
     </div>
 </form>
 
+<script>
+    /*validation Client Side Validation*/
+    
+    window.onload = function () {
+
+        var formHandle = document.forms.form_add;
+
+        var error = document.getElementById("errorMsg");
+
+        formHandle.onsubmit = processForm;
+
+        function processForm() {
+
+            var TeacherFName = formHandle.TeacherFName;
+            var fNameValue = TeacherFName.value;
+
+            var TeacherLName = formHandle.TeacherLName;
+            var lNameValue = TeacherLName.value;
+
+            var EmployeeNumber = formHandle.EmployeeNumber;
+            var employeeNum = EmployeeNumber.value;
+
+            var HireDate = formHandle.HireDate;
+            var dateValue = HireDate.value;
+
+            var Salary = formHandle.Salary;
+            var salaryValue = Salary.value;
+
+            if (fNameValue === "" || fNameValue === null) {
+                error.innerHTML = "ERROR - Please provide the First Name of the New Teacher";
+                TeacherFName.style.background = "red";
+                TeacherLName.style.background = "white";
+                EmployeeNumber.style.background = "white";
+                HireDate.style.background = "white";
+                Salary.style.background = "white";
+                TeacherFName.focus();
+                return false
+            }
+            else if (lNameValue === "" || lNameValue === null) {
+                error.innerHTML = "ERROR - Please provide the Last Name of the New Teacher";
+                TeacherFName.style.background = "white";
+                TeacherLName.style.background = "red";
+                EmployeeNumber.style.background = "white";
+                HireDate.style.background = "white";
+                Salary.style.background = "white";
+                TeacherLName.focus();
+                return false
+            }
+            else if (employeeNum === "" || employeeNum === null) {
+                error.innerHTML = "ERROR - Please provide the Employee Number of the New Teacher";
+                TeacherFName.style.background = "white";
+                TeacherLName.style.background = "white";
+                EmployeeNumber.style.background = "red";
+                HireDate.style.background = "white";
+                Salary.style.background = "white";
+                EmployeeNumber.focus();
+                return false
+            }
+            else if (dateValue === "" || dateValue === null) {
+                error.innerHTML = "ERROR - Please provide the Hire Date of the New Teacher";
+                TeacherFName.style.background = "white";
+                TeacherLName.style.background = "white";
+                EmployeeNumber.style.background = "white";
+                HireDate.style.background = "red";
+                Salary.style.background = "white";
+                HireDate.focus();
+                return false
+            }
+            else if (salaryValue === "" || salaryValue === null) {
+                error.innerHTML = "ERROR - Please provide the Salary of the New Teacher";
+                TeacherFName.style.background = "white";
+                TeacherLName.style.background = "white";
+                EmployeeNumber.style.background = "white";
+                HireDate.style.background = "white";
+                Salary.style.background = "red";
+                Salary.focus();
+                return false
+            }
+            else {
+                error.innerHTML = "";
+                TeacherFName.style.background = "white";
+                TeacherLName.style.background = "white";
+                EmployeeNumber.style.background = "white";
+                HireDate.style.background = "white";
+                Salary.style.background = "white";
+            }
+        }
+
+    }
+
+</script>
 

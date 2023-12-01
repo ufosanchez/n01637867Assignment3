@@ -142,3 +142,10 @@ form div{
     margin-bottom: 0.5em;
 }
 
+#errorMsg {
+    background-color: #dd1111;
+    color: white;
+    margin-bottom: 1em;
+    display:inline-block;
+}
+
