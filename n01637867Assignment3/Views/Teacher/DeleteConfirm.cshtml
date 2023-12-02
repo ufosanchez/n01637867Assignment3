@@ -10,7 +10,7 @@
 
     <a class="goBack" href="/Teacher/Show/@Model.TeacherID">Cancel</a>
 
-    <h2>Are you sure you want to delete the Professor: @Model.TeacherFName @Model.TeacherLName?</h2>
+    <h2>Are you sure you want to delete the Professor: <spam class="delete_spam">@Model.TeacherFName @Model.TeacherLName</spam>?</h2>
     <p>This action can not be undone.</p>
 
     <form method="POST" action="/Teacher/Delete/@Model.TeacherID">

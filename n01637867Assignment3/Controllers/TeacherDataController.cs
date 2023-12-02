@@ -163,15 +163,14 @@ namespace n01637867Assignment3.Controllers
             return selectedTeacher;
         }
 
+
         /// <summary>
-        /// 
+        /// This method receives the Teacger ID and delete it from the DB
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="TeacherId">This is the ID that it's sent and it will be used on the query in order to delete the record of that specific ID</param>
         /// <example>
         /// POST: /api/TeacherData/DeleteTeacher/4
-        /// This method will not return anything, it will delete a teacher from the DB
-        /// </example>
-
+        /// This method will not return anything, it will delete a teacher from the DB</example>
         [HttpPost]
         [Route("api/TeacherData/DeleteTeacher/{TeacherId}")]
         public void DeleteTeacher(int TeacherId)
@@ -202,11 +201,49 @@ namespace n01637867Assignment3.Controllers
             Conn.Close();
         }
 
+        /// <summary>
+        /// This method receives a Teacher and it will insert it into the database, but first it needs to aprove the validation
+        /// if the validation is true the code will run completly and it will insert the teacher into the teachers table of the DB, 
+        /// after that the web page will navigate the user to the /Teacher/List where you can see the new Teacher at the bottom of the List.
+        /// 
+        /// If the validation is false (incorrect), the code will NOT insert the tEacher int the DB and the webpage will navigate to the 
+        /// /Teacher/List but in this case the Teacher will no be inserted, therefore the new teacher will NOT be seen
+        /// </summary>
+        /// <param name="NewTeacher">THe Teacher object that was given by the form in /Teacher/New</param>
+        /// <return>
+        /// null
+        /// </return>
+        /// <example>
+        ///     POST /api/TeacherData/AddTeacher
+        ///     FORM DATA:
+        ///     {"TeacherFName": "Arnulfo", "TeacherLName": "Sanchez", "EmployeeNumber": "T200", "HireDate": "2023-12-01", "Salary": 35.75}
+        /// </example>
+        /// <example>
+        ///     POST /api/TeacherData/AddTeacher
+        ///     FORM DATA:
+        ///     {"TeacherFName": "David", "TeacherLName": "Pena", "EmployeeNumber": "T305", "HireDate": "2023-11-15", "Salary": 55.75}
+        /// 
+        /// {\"TeacherFName\": \"Arnulfo\", \"TeacherLName\": \"Sanchez\", \"EmployeeNumber\": \"T200\", \"HireDate\": \"2023-12-01\", \"Salary\": 35.75}
+        /// </example>
+        /// <example>
+        /// if you want to use CURL
+        /// curl -d "{\"TeacherFName\": \"Arnulfo\", \"TeacherLName\": \"Sanchez\", \"EmployeeNumber\": \"T200\", \"HireDate\": \"2023-12-01\", \"Salary\": 35.75}" -H "Content-Type: application/json" http://localhost:54880/api/TeacherData/AddTeacher
+        /// </example>
+        /// 
+        /// <example>
+        /// another CURL example
+        /// curl -d "{\"TeacherFName\": \"David\", \"TeacherLName\": \"Pena\", \"EmployeeNumber\": \"T305\", \"HireDate\": \"2023-11-15\", \"Salary\": 55.75}" -H "Content-Type: application/json" http://localhost:54880/api/TeacherData/AddTeacher
+        /// </example>
         [HttpPost]
         public void AddTeacher([FromBody]Teacher NewTeacher)
         {
             //connect to the school database
             MySqlConnection Conn = School.AccessDatabase();
+
+            //server-side validation, this method of the NewTeacher obj checks if the inputs were provided as well as if it presents data, the definition of the method is in the Model Teacher
+            //If the result is false, a new Teacher will not be created and the Teachers list will be returned, however, the entered teacher is not shown in this list since
+            //its validation gave a false result.
+            if (!NewTeacher.IsValid()) return;
 
             //open a connection to the database
             Conn.Open();

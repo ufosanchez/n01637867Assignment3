@@ -5,6 +5,8 @@
 
 <h2>New teacher</h2>
 
+<!-- Form tahat will get all the information of the Teacher will go to /Teacher/Create, however this method is in charge just to insert the new Teacher
+    and after inserting the teacher into the DB will redirect to Teacher/List-->
 <form method="POST" action="/Teacher/Create" name="form_add">
     <span id="errorMsg"></span>
     <div>
@@ -29,7 +31,7 @@
 
     <div>
         <label for="Salary">Salary:</label>
-        <input type="number" id="Salary" name="Salary" step="0.01"/>
+        <input type="number" id="Salary" name="Salary" step="0.01" />
     </div>
 
     <div>
@@ -39,7 +41,7 @@
 
 <script>
     /*validation Client Side Validation*/
-    
+
     window.onload = function () {
 
         var formHandle = document.forms.form_add;

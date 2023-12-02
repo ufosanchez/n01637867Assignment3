@@ -57,7 +57,7 @@ namespace n01637867Assignment3.Controllers
             return View(SelectedTeacher);
         }
 
-        // POST : Teacher/Delete/{id}
+        // POST : Teacher/Delete
         // Go to -> /View/Teacher/DeleteConfirm.cshtml
         // Browser confirm if the user wants to delete the selected teacher
         [HttpPost]
@@ -73,6 +73,8 @@ namespace n01637867Assignment3.Controllers
         }
 
         //GET :  /Teacher/New
+        // Go to -> /View/Teacher/New.cshtml
+        // Display a form to insert a new Teacher
         public ActionResult New()
         {
             
@@ -80,6 +82,8 @@ namespace n01637867Assignment3.Controllers
         }
 
         //POST :  /Teacher/Create
+        //receives the post data
+        //tries to send it to the API and redirects to the Teachers List page
         [HttpPost]
         public ActionResult Create(string TeacherFName, string TeacherLName, string EmployeeNumber, DateTime HireDate, decimal Salary)
         {

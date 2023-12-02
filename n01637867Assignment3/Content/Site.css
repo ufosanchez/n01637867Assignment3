@@ -74,23 +74,27 @@ section{
     color: white;
 }
 
+/*Conatiner style of show */
 .content-conatiner{
     width: 70%;
     margin: 0 auto;
 }
 
+/*Lisnks container*/
 .container-box {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+/*style of the goBack link*/
 .goBack {
     text-decoration: none;
     margin: 1em 0;
     display: inline-block;
 }
 
+/*style of the delete link*/
 .deleteLink {
     text-decoration: none;
     color: white;
@@ -101,6 +105,7 @@ section{
     border-radius: 10px;
 }
 
+    /*style of the delete link hover*/
 .deleteLink:hover {
     color: #dd1111;
     background: white;
@@ -113,6 +118,7 @@ section{
     align-items: center;
 }
 
+/*Style btn delete*/
 .deleteBtn {
     color: white;
     background: #dd1111;
@@ -122,6 +128,7 @@ section{
     margin: 0 auto;
 }
 
+/*style of the add feature in the Teacher/List*/
 .addTeacher {
     text-decoration: none;
     color: white;
@@ -133,6 +140,7 @@ section{
     display:inline-block;
 }
 
+/*style hover of the add feature in the Teacher/List*/
 .addTeacher:hover {
     background: #bc6c25;
     color: white;
@@ -142,10 +150,17 @@ form div{
     margin-bottom: 0.5em;
 }
 
+/*style of the error client valisation*/
 #errorMsg {
     background-color: #dd1111;
     color: white;
     margin-bottom: 1em;
     display:inline-block;
+}
+
+/*style of the name of Teacher when it's abou to be deleted*/
+.delete_spam {
+    font-weight: bold;
+    color: #dd1111;
 }
 
