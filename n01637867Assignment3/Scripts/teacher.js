@@ -41,7 +41,7 @@ function UpdateTeacher(id) {
 			if (rq.readyState === 4 && rq.status === 200 || rq.status === 204) {
 				//request is successful and the request is finished
 
-				window.location.href = "/Teacher/List";
+				window.location.href = "/Teacher/Show/" + id;
 
 			} else {
 				console.log(rq.status);
