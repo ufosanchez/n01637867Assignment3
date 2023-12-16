@@ -1,50 +1,48 @@
-﻿
+﻿@model n01637867Assignment3.Models.Teacher
+
 @{
-    ViewBag.Title = "New";
+    ViewBag.Title = "Edit";
 }
 
-<h2>New teacher</h2>
+<h2>Editing a specific Teacher</h2>
 
-<!-- Form that will get all the information of the Teacher will go to /Teacher/Create, however this method is in charge just to insert the new Teacher
-    and after inserting the teacher into the DB will redirect to Teacher/List-->
-<form method="POST" action="/Teacher/Create" name="form_add">
+<a class="goBack" href="/Teacher/Show/@Model.TeacherID">Back to Show Teacher</a>
+
+<!-- Form that will display the information of the Teacher and it will allow the user to update the inputs, this form will redirect
+    the user to /Teacher/Show/{id}, this will update the cells of the Teacher in the DB -->
+<form method="POST" action="/Teacher/Update/@Model.TeacherID" name="form_update">
     <span id="errorMsg"></span>
     <div>
         <label for="TeacherFName">First Name:</label>
-        <input type="text" id="TeacherFName" name="TeacherFName" />
+        <input type="text" id="TeacherFName" name="TeacherFName" value="@Model.TeacherFName"/>
     </div>
 
     <div>
         <label for="TeacherLName">Last Name:</label>
-        <input type="text" id="TeacherLName" name="TeacherLName" />
+        <input type="text" id="TeacherLName" name="TeacherLName" value="@Model.TeacherLName"/>
     </div>
 
     <div>
         <label for="EmployeeNumber">Employee Number:</label>
-        <input type="text" id="EmployeeNumber" name="EmployeeNumber" />
-    </div>
-
-    <div>
-        <label for="HireDate">Hire Date:</label>
-        <input type="date" id="HireDate" name="HireDate" />
+        <input type="text" id="EmployeeNumber" name="EmployeeNumber" value="@Model.EmployeeNumber"/>
     </div>
 
     <div>
         <label for="Salary">Salary:</label>
-        <input type="number" id="Salary" name="Salary" step="0.01" />
+        <input type="number" id="Salary" name="Salary" step="0.01" value="@Model.Salary"/>
     </div>
 
     <div>
-        <input type="submit" value="Create Teacher">
+        <input type="submit" value="Update Teacher">
     </div>
 </form>
 
 <script>
-    /*validation Client Side Validation*/
+    /*update validation Client Side Validation*/
 
     window.onload = function () {
 
-        var formHandle = document.forms.form_add;
+        var formHandle = document.forms.form_update;
 
         var error = document.getElementById("errorMsg");
 
@@ -61,58 +59,41 @@
             var EmployeeNumber = formHandle.EmployeeNumber;
             var employeeNum = EmployeeNumber.value;
 
-            var HireDate = formHandle.HireDate;
-            var dateValue = HireDate.value;
-
             var Salary = formHandle.Salary;
             var salaryValue = Salary.value;
 
             if (fNameValue === "" || fNameValue === null) {
-                error.innerHTML = "ERROR - Please provide the First Name of the New Teacher";
+                error.innerHTML = "ERROR - Please provide the First Name of the Updated Teacher";
                 TeacherFName.style.background = "red";
                 TeacherLName.style.background = "white";
                 EmployeeNumber.style.background = "white";
-                HireDate.style.background = "white";
                 Salary.style.background = "white";
                 TeacherFName.focus();
                 return false
             }
             else if (lNameValue === "" || lNameValue === null) {
-                error.innerHTML = "ERROR - Please provide the Last Name of the New Teacher";
+                error.innerHTML = "ERROR - Please provide the Last Name of the Updated Teacher";
                 TeacherFName.style.background = "white";
                 TeacherLName.style.background = "red";
                 EmployeeNumber.style.background = "white";
-                HireDate.style.background = "white";
                 Salary.style.background = "white";
                 TeacherLName.focus();
                 return false
             }
             else if (employeeNum === "" || employeeNum === null) {
-                error.innerHTML = "ERROR - Please provide the Employee Number of the New Teacher";
+                error.innerHTML = "ERROR - Please provide the Employee Number of the Updated Teacher";
                 TeacherFName.style.background = "white";
                 TeacherLName.style.background = "white";
                 EmployeeNumber.style.background = "red";
-                HireDate.style.background = "white";
                 Salary.style.background = "white";
                 EmployeeNumber.focus();
                 return false
             }
-            else if (dateValue === "" || dateValue === null) {
-                error.innerHTML = "ERROR - Please provide the Hire Date of the New Teacher";
-                TeacherFName.style.background = "white";
-                TeacherLName.style.background = "white";
-                EmployeeNumber.style.background = "white";
-                HireDate.style.background = "red";
-                Salary.style.background = "white";
-                HireDate.focus();
-                return false
-            }
             else if (salaryValue === "" || salaryValue === null) {
-                error.innerHTML = "ERROR - Please provide the Salary of the New Teacher";
+                error.innerHTML = "ERROR - Please provide the Salary of the Updated Teacher";
                 TeacherFName.style.background = "white";
                 TeacherLName.style.background = "white";
                 EmployeeNumber.style.background = "white";
-                HireDate.style.background = "white";
                 Salary.style.background = "red";
                 Salary.focus();
                 return false
@@ -122,7 +103,6 @@
                 TeacherFName.style.background = "white";
                 TeacherLName.style.background = "white";
                 EmployeeNumber.style.background = "white";
-                HireDate.style.background = "white";
                 Salary.style.background = "white";
             }
         }
@@ -130,4 +110,3 @@
     }
 
 </script>
-

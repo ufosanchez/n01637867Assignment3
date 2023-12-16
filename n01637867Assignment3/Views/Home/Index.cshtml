@@ -26,10 +26,10 @@
     </div>
         -->
     <!-- change the main content of the homepage -->
-    <h1>HTTP5101 Cumulative Project Part 2</h1>
+    <h1>HTTP5101 Cumulative Project Part 3</h1>
     <h2>Arnulfo Sánchez - n01637867</h2>
     <p>In this Assignment you will be able to find the information collected by School Database, in which 3 tables are presented (Teachers, Students, Classes)</p>
-    <p>Additionally, you will be able to <strong>ADD</strong> and <strong>DELETE</strong> Teachers</p>
+    <p>Additionally, you will be able to <strong>ADD</strong>, <strong>DELETE</strong> and <strong>UPDATE</strong> Teachers</p>
 
     <!-- boxes that explain the Teacher, studen amd class fatures -->
     <div class="page-content">
@@ -45,6 +45,38 @@
                         If you click on any of the teachers on the list you will be navigated to the details of the selected teacher
                     </li>
                 </ol>
+                <p>In version #2, the <strong>ADD and DELETE features were added</strong>, as well as the <strong>feedback from Find Teacher should receive the teacher id as a parameter, not string concatenation.</strong></p>
+                <p><strong>Initiatives:</strong></p>
+                <ul>
+                    <li>
+                        Using the CURL with command prompt to send the post data in the AddTeacher
+                    </li>
+                    <li>
+                        Server Side Validation
+                    </li>
+                    <li>
+                        Client Side Validation
+                    </li>
+                </ul>
+                <p>In version #3, the <strong>UPDATE features was added</strong>.</p>
+                <p><strong>Initiatives:</strong></p>
+                <ul>
+                    <li>
+                        Using a <strong>CURL request with a JSON object</strong> to update the teacher data through the WebAPI instead of the teacher interface
+                    </li>
+                    <li>
+                        Use <strong>JavaScript and AJAX to send an XHR request</strong> for updating a teacher
+                    </li>
+                    <li>
+                        Use of <strong>try and catch in the /Teacher/Update/{id}</strong>, to do this I created a new ActionResult Error() in the HomeController as well as a new view Error
+                    </li>
+                    <li>
+                        <strong>Server Side Validation</strong> to ensure that there is no missing information when a teacher is updated
+                    </li>
+                    <li>
+                        <strong>Client Side Validation</strong> Update Feature
+                    </li>
+                </ul>
                 <a href="/Teacher/List" class="link-style">Teacher List</a>
             </section>
         </div>

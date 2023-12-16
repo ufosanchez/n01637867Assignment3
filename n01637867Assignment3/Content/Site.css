@@ -164,3 +164,39 @@ form div{
     color: #dd1111;
 }
 
+/*style of the update link*/
+.updateLink {
+    display:inline-block;
+    text-decoration: none;
+    color: white;
+    margin-bottom: 0.5em;
+    background: #0077b6;
+    padding: 5px 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+/*style of the update link hover*/
+.updateLink:hover {
+    color: #0077b6;
+    background: #fdf0d5;
+}
+
+/*style of the update Ajax link*/
+.updateLink_Ajax {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    margin-bottom: 0.5em;
+    background: #ffb703;
+    padding: 5px 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+/*style of the update Ajax link hover*/
+    .updateLink_Ajax:hover {
+        color: white;
+        background: #4a4e69;
+    }
+

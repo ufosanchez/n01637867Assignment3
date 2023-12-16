@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -269,6 +270,81 @@ namespace n01637867Assignment3.Controllers
 
             //close the connection 
             Conn.Close();
+        }
+
+        /// <summary>
+        /// Receives a teacher ID and the new information that will overwrite the previous information, once the information is received
+        /// this method will update the specified Teacher 
+        /// The information will be collected in the UpdateTeacher which is a Teacher object, this object will contain the following information:
+        /// TeacherFName, TeacherLName, EmployeeNumber, Salary; these will be the new data that will be used to update the Teacher.
+        /// 
+        /// Additionally, as it's a public void we will not have any return
+        /// </summary>
+        /// <param name="TeacherId">The primary key (TeacherId) to update</param>
+        /// <param name="UpdateTeacher">The Teacher object, this parameter holds the new data, with this data the method will
+        /// update the specified Teacher</param>
+        /// <return>
+        /// </return>
+        /// <example>
+        ///     Use of JSON OBJECT, for this we mush open the folder in the Command Prompt where our teacher.json is located
+        ///     once it is open, insert the next line
+        ///     curl http://localhost:54880/api/TeacherData/UpdateTeacher/18 -d @teacher.json -H "Content-Type: application/json"
+        ///     In this example, the TeacherId = 18 will be updated with the information that was written in the file teacher.json
+        /// </example>
+        /// <example>
+        ///         POST /api/TeacherData/UpdateTeacher/{TeacherId}
+        ///         POST DATA:
+        ///         {
+        ///             "TeacherFName": "Albert", 
+        ///             "TeacherLName": "Williams", 
+        ///             "EmployeeNumber": "HTTP320", 
+        ///             "Salary": 31.25
+        ///         }
+        /// </example>
+
+        [HttpPost]
+        [Route("api/TeacherData/UpdateTeacher/{TeacherId}")]
+        public void UpdateTeacher(int TeacherId, [FromBody] Teacher UpdateTeacher)
+        {
+            //testing tha it receives the information
+            Debug.WriteLine("id of the Teacher" + TeacherId);
+            Debug.WriteLine("Update First Name:" + UpdateTeacher.TeacherFName);
+            Debug.WriteLine("Update Last Name:" + UpdateTeacher.TeacherLName);
+            Debug.WriteLine("Update Employee Number:" + UpdateTeacher.EmployeeNumber);
+            Debug.WriteLine("Update Salary:" + UpdateTeacher.Salary);
+
+            //connect to the school database
+            MySqlConnection Conn = School.AccessDatabase();
+
+            //server-side Update validation. This method of the Teacher class will be in charge of verifying that the new data that will be
+            //submitted are valid. If they are not, it will cause the method to terminate, which will cause the teacher to not be updated.
+            if (!UpdateTeacher.IsValidUpdate()) return;
+
+            //open a connection to the database
+            Conn.Open();
+
+            //create a sql command
+            MySqlCommand cmd = Conn.CreateCommand();
+
+            //execute the sql command
+            cmd.CommandText = "update teachers set teacherfname=@TeacherFName, teacherlname=@TeacherLName, employeenumber=@EmployeeNumber, salary=@Salary where teacherid=@id";
+
+            //sanitizing
+            cmd.Parameters.AddWithValue("@TeacherFName", UpdateTeacher.TeacherFName);
+            cmd.Parameters.AddWithValue("@TeacherLName", UpdateTeacher.TeacherLName);
+            cmd.Parameters.AddWithValue("@EmployeeNumber", UpdateTeacher.EmployeeNumber);
+            cmd.Parameters.AddWithValue("@Salary", UpdateTeacher.Salary);
+            cmd.Parameters.AddWithValue("@id", TeacherId); //not retrieved from the post data Teacher object
+
+            //binding
+            cmd.Prepare();
+
+            //method to execute a not SELECT statement 
+            cmd.ExecuteNonQuery();
+
+            //close the connection 
+            Conn.Close();
+
         }
     }
 }

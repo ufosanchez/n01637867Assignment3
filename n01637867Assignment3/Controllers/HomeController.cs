@@ -14,5 +14,15 @@ namespace n01637867Assignment3.Controllers
 
             return View();
         }
+
+        //GET : /Home/Error
+        // Go to -> /Home/Error.cshtml
+        /// <summary>
+        /// This window is for showing Generic Errors
+        /// </summary>
+        public ActionResult Error()
+        {
+            return View();
+        }
     }
 }

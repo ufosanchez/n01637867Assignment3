@@ -42,5 +42,29 @@ namespace n01637867Assignment3.Models
             return valid;
         }
 
+        //validation when and update is made for a Teacher, this will check that the information provided is valid
+        public bool IsValidUpdate()
+        {
+            bool validUpdate = true;
+
+            if (TeacherFName == null || TeacherLName == null || EmployeeNumber == null || Salary == null)
+            {
+                //Base validation to check if the fields are entered.
+                validUpdate = false;
+            }
+            else
+            {
+                //Validation for fields 
+                if (TeacherFName == "" || TeacherFName.Length < 2 || TeacherFName.Length > 255) validUpdate = false;
+                if (TeacherLName == "" || TeacherLName.Length < 2 || TeacherLName.Length > 255) validUpdate = false;
+                if (EmployeeNumber == "" || EmployeeNumber.Length < 2 || EmployeeNumber.Length > 255) validUpdate = false;
+                if (Salary <= 0) validUpdate = false;
+
+            }
+            Debug.WriteLine("The update model validity is : " + validUpdate);
+
+            return validUpdate;
+        }
+
     }
 }
